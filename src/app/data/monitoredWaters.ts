@@ -1,0 +1,108 @@
+export interface MonitoredWater {
+  id: string;
+  locationName: string;
+  locationType: "River" | "Creek" | "Canal";
+  barangay: string;
+  municipality: string;
+  currentLevel: number;
+  maxLevel: number;
+  status: "Safe" | "Warning" | "Danger";
+  sensorId: string;
+  trend: "Rising" | "Stable" | "Falling";
+  lastUpdated: string;
+  notes: string;
+  imageUrl: string;
+}
+
+export const monitoredWaters: MonitoredWater[] = [
+  {
+    id: "cdr-river",
+    locationName: "Cagayan De Oro River",
+    locationType: "River",
+    barangay: "Macasandig",
+    municipality: "Cagayan de Oro",
+    currentLevel: 8.0,
+    maxLevel: 10.0,
+    status: "Danger",
+    sensorId: "TSU-001",
+    trend: "Rising",
+    lastUpdated: "09:12 AM",
+    notes: "Rapid increase after heavy rainfall upstream.",
+    imageUrl: "/waters/cagayan-de-oro-river.jpg",
+  },
+  {
+    id: "bigaan-river",
+    locationName: "Bigaan River",
+    locationType: "River",
+    barangay: "Bigaan",
+    municipality: "Cagayan de Oro",
+    currentLevel: 4.1,
+    maxLevel: 8.0,
+    status: "Safe",
+    sensorId: "FLD-002",
+    trend: "Stable",
+    lastUpdated: "09:08 AM",
+    notes: "Within normal range for this time.",
+    imageUrl: "/waters/bigaan-river.jpg",
+  },
+  {
+    id: "bitanag-creek",
+    locationName: "Bitan-ag Creek",
+    locationType: "Creek",
+    barangay: "Bitan-ag",
+    municipality: "Cagayan de Oro",
+    currentLevel: 7.0,
+    maxLevel: 10.0,
+    status: "Warning",
+    sensorId: "FLD-003",
+    trend: "Rising",
+    lastUpdated: "09:11 AM",
+    notes: "Approaching warning threshold due to runoff.",
+    imageUrl: "/waters/bitan-ag-creek.jpg",
+  },
+  {
+    id: "kauswagan-canal",
+    locationName: "Kauswagan Canal",
+    locationType: "Canal",
+    barangay: "Kauswagan",
+    municipality: "Cagayan de Oro",
+    currentLevel: 3.5,
+    maxLevel: 7.0,
+    status: "Safe",
+    sensorId: "FLD-004",
+    trend: "Falling",
+    lastUpdated: "09:05 AM",
+    notes: "Water is draining after early morning rain.",
+    imageUrl: "/waters/kauswagan-canal.jpg",
+  },
+  {
+    id: "taguanao-creek",
+    locationName: "Taguanao Creek",
+    locationType: "Creek",
+    barangay: "Taguanao",
+    municipality: "Cagayan de Oro",
+    currentLevel: 6.9,
+    maxLevel: 9.0,
+    status: "Warning",
+    sensorId: "FLD-005",
+    trend: "Stable",
+    lastUpdated: "09:10 AM",
+    notes: "Sustained high flow along low-lying sections.",
+    imageUrl: "/waters/taguanao-creek.jpg",
+  },
+  {
+    id: "iponan-river",
+    locationName: "Iponan River",
+    locationType: "River",
+    barangay: "Iponan",
+    municipality: "Cagayan de Oro",
+    currentLevel: 9.2,
+    maxLevel: 10.5,
+    status: "Danger",
+    sensorId: "TSU-006",
+    trend: "Rising",
+    lastUpdated: "09:14 AM",
+    notes: "Strong upstream inflow; evacuation team notified.",
+    imageUrl: "/waters/iponan-river.jpg",
+  },
+];
