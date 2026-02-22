@@ -3,27 +3,28 @@
 
 import { Card, CardContent } from "./ui/card";
 import { ReactNode } from "react";
+import "./StatsCard.css";
 
 // Props that this component receives
 interface StatsCardProps {
   label: string;
-  value: string;
+  value: string; 
   icon: ReactNode;
 }
 
 export function StatsCard({ label, value, icon }: StatsCardProps) {
   return (
     <Card>
-      <CardContent className="pt-6">
-        <div className="flex items-center justify-between">
+      <CardContent className="stats-card__content">
+        <div className="stats-card__row">
           {/* Left side - text */}
           <div>
-            <p className="text-sm text-muted-foreground">{label}</p>
-            <p className="text-2xl font-mono mt-1">{value}</p>
+            <p className="stats-card__label">{label}</p>
+            <p className="stats-card__value">{value}</p>
           </div>
 
           {/* Right side - emoji or image icon */}
-          <div className="text-4xl">{icon}</div>
+          <div className="stats-card__icon">{icon}</div>
         </div>
       </CardContent>
     </Card>

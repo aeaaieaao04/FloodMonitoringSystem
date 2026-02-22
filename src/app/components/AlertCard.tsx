@@ -3,6 +3,7 @@
 
 import { Card, CardContent } from "./ui/card";
 import { AlertCircle } from "lucide-react";
+import "./AlertCard.css";
 
 // Props that this component receives
 interface AlertCardProps {
@@ -12,32 +13,20 @@ interface AlertCardProps {
 }
 
 export function AlertCard({ title, message, type }: AlertCardProps) {
-  // Choose color and style based on alert type
-  let borderColor = "border-blue-500";
-  let iconColor = "text-blue-500";
-  let bgColor = "bg-blue-50";
-
-  if (type === "warning") {
-    borderColor = "border-yellow-500";
-    iconColor = "text-yellow-500";
-    bgColor = "bg-yellow-50";
-  } else if (type === "danger") {
-    borderColor = "border-red-500";
-    iconColor = "text-red-500";
-    bgColor = "bg-red-50";
-  }
+  const variant =
+    type === "warning" ? "warning" : type === "danger" ? "danger" : "info";
 
   return (
-    <Card className={`border-l-4 ${borderColor} ${bgColor}`}>
-      <CardContent className="pt-6">
-        <div className="flex gap-3">
+    <Card className={`alert-card alert-card--${variant}`}>
+      <CardContent className="alert-card__content">
+        <div className="alert-card__row">
           {/* Alert icon */}
-          <AlertCircle className={`h-5 w-5 ${iconColor} mt-0.5`} />
+          <AlertCircle className={`alert-card__icon alert-card__icon--${variant}`} />
           
           {/* Alert content */}
-          <div className="flex-1">
-            <h4 className="font-medium mb-1">{title}</h4>
-            <p className="text-sm text-muted-foreground">{message}</p>
+          <div className="alert-card__body">
+            <h4 className="alert-card__title">{title}</h4>
+            <p className="alert-card__message">{message}</p>
           </div>
         </div>
       </CardContent>

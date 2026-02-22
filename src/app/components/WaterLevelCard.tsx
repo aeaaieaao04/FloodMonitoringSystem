@@ -3,6 +3,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
+import "./WaterLevelCard.css";
 
 // Props that this component receives
 interface WaterLevelCardProps {
@@ -19,47 +20,42 @@ export function WaterLevelCard({
   status,
 }: WaterLevelCardProps) {
   // Calculate percentage for progress bar
-  const percentage = (currentLevel / maxLevel) * 100;
+  const percentage = Math.max(0, Math.min((currentLevel / maxLevel) * 100, 100));
+  const normalizedStatus = status.toLowerCase();
+  const statusVariant =
+    normalizedStatus === "warning"
+      ? "warning"
+      : normalizedStatus === "danger"
+        ? "danger"
+        : "safe";
 
-  // Choose color based on status
-  let statusColor = "bg-green-500";
-  let badgeClass = "bg-green-500 text-white";
-
-  if (status === "Warning") {
-    statusColor = "bg-yellow-500";
-    badgeClass = "bg-yellow-500 text-black";
-  } else if (status === "Danger") {
-    statusColor = "bg-red-500";
-    badgeClass = "bg-red-500 text-white";
-  } else if (status === "Safe") {
-    statusColor = "bg-green-500";
-    badgeClass = "bg-green-500 text-white";
-  }
+  const badgeClass = `water-level-card__badge water-level-card__badge--${statusVariant}`;
+  const fillClass = `water-level-card__progress-fill water-level-card__progress-fill--${statusVariant}`;
 
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="water-level-card__header-row">
           <CardTitle>{locationName}</CardTitle>
           <Badge className={badgeClass}>{status}</Badge>
         </div>
       </CardHeader>
       <CardContent>
         {/* Water level numbers */}
-        <div className="space-y-2">
-          <p className="text-3xl font-mono">{currentLevel}m</p>
-          <p className="text-sm text-muted-foreground">
+        <div className="water-level-card__body">
+          <p className="water-level-card__level">{currentLevel}m</p>
+          <p className="water-level-card__max-level">
             Max Level: {maxLevel}m
           </p>
 
           {/* Progress bar showing water level */}
-          <div className="w-full bg-gray-200 rounded-full h-4 mt-4">
+          <div className="water-level-card__progress-track">
             <div
-              className={`h-4 rounded-full ${statusColor}`}
+              className={fillClass}
               style={{ width: `${percentage}%` }}
             />
           </div>
-          <p className="text-xs text-muted-foreground text-right">
+          <p className="water-level-card__percent">
             {percentage.toFixed(0)}% of max capacity
           </p>
         </div>

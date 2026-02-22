@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { WaterLevelCard } from "./components/WaterLevelCard";
 import { AlertCard } from "./components/AlertCard";
 import { StatsCard } from "./components/StatsCard";
 import { Button } from "./components/ui/button";
+import "./App.css";
 
 // Main app for the Flood Monitoring System
 // This is the single screen required for Lab Activity 2 and 3
@@ -14,9 +14,13 @@ export default function App() {
   // System data (Lab 2: dynamic data)
   // These arrays can be changed to update the UI
   const stats = [
-    { label: "Total Locations", value: "3", icon: <img src="/location.png" alt="Location" style={{ width: 65, height: 65 }} /> },
-    { label: "Active Alerts", value: "2", icon: "⚠️" },
-    { label: "Safe Areas", value: "1", icon: "✅" },
+    {
+      label: "Total Locations",
+      value: "3",
+      icon: <img src="/location.png" alt="Location" className="app__location-icon" />,
+    },
+    { label: "Active Alerts", value: "2", icon: "\u26A0\uFE0F" },
+    { label: "Safe Areas", value: "1", icon: "\u2705" },
   ];
   const waterLevels = [
     { locationName: "Cagayan De Oro River", currentLevel: 8.0, maxLevel: 10.0, status: "Danger" },
@@ -26,57 +30,57 @@ export default function App() {
   const alerts = [
     { title: "High Water Level", message: "Central Dam water level is approaching maximum capacity.", type: "danger" },
     { title: "Heavy Rainfall Expected", message: "Weather forecast shows heavy rain in the next 6 hours.", type: "warning" },
+    { title: "Tsunami Alert", message: "Tsunami warning issued for coastal areas.", type: "danger" },
   ];
 
   // Toggle alerts (Lab 3: interaction)
   const toggleAlerts = () => setShowAlerts((v) => !v);
 
-  // UI layout uses semantic HTML and Tailwind for simple styling
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-blue-600 text-white p-6">
-        <h1 className="text-2xl">Flood Monitoring System</h1>
-        <p className="text-blue-100 mt-1">Real-time water level monitoring and alerts</p>
+    <div className="app">
+      <header className="app__header">
+        <h1 className="app__title">Flood Monitoring System</h1>
+        <p className="app__subtitle">Real-time water level monitoring and alerts</p>
       </header>
-      <main className="container mx-auto p-6 space-y-6">
-        {/* Statistics (Grid) */}
-        <section>
-          <h2 className="text-lg mb-2">Overview Statistics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+      <main className="app__main">
+        <section className="app__section">
+          <h2 className="app__section-title">Overview Statistics</h2>
+          <div className="app__stats-grid">
             {stats.map((stat, i) => (
               <StatsCard key={i} label={stat.label} value={stat.value} icon={stat.icon} />
             ))}
           </div>
         </section>
-        {/* Water Levels (Grid) */}
-        <section>
-          <h2 className="text-lg mb-2">Water Levels by Location</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <section className="app__section">
+          <h2 className="app__section-title">Water Levels by Location</h2>
+          <div className="app__water-grid">
             {waterLevels.map((loc, i) => (
               <WaterLevelCard key={i} {...loc} />
             ))}
           </div>
         </section>
-        {/* Alerts (Flex + Grid) */}
-        <section>
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-lg">Active Alerts</h2>
+
+        <section className="app__section">
+          <div className="app__alerts-header">
+            <h2 className="app__section-title app__section-title--no-margin">Active Alerts</h2>
             <Button onClick={toggleAlerts} variant="outline">
               {showAlerts ? "Hide Alerts" : "Show Alerts"}
             </Button>
           </div>
           {showAlerts && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="app__alerts-grid">
               {alerts.map((alert, i) => (
                 <AlertCard key={i} {...alert} />
               ))}
             </div>
           )}
         </section>
-        {/* Simple instructions for demo */}
-        <section className="bg-white p-4 rounded border">
-          <h3 className="font-medium mb-2">How to Use</h3>
-          <ul className="text-sm text-muted-foreground list-disc list-inside">
+
+        <section className="app__help">
+          <h3 className="app__help-title">How to Use</h3>
+          <ul className="app__help-list">
             <li>Check water levels at different locations</li>
             <li>Monitor active alerts for dangerous situations</li>
             <li>Green = Safe, Yellow = Warning, Red = Danger</li>
@@ -84,7 +88,8 @@ export default function App() {
           </ul>
         </section>
       </main>
-      <footer className="bg-gray-800 text-white p-4 mt-8 text-center text-sm">
+
+      <footer className="app__footer">
         Flood Monitoring System - Laboratory Activity #3
       </footer>
     </div>
