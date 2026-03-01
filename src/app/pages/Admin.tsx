@@ -1,17 +1,7 @@
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
+import "./Admin.css";
 
-interface AdminProps {
-  onLogout: () => void;
-}
-
-export function Admin({ onLogout }: AdminProps) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    onLogout();
-    navigate("/login");
-  };
-
+export function Admin() {
   return (
     <section className="app__section">
       <h2 className="app__section-title">Admin View</h2>
@@ -29,9 +19,6 @@ export function Admin({ onLogout }: AdminProps) {
         <Link to="/admin/users" className="app__page-link">
           User Management
         </Link>
-        <button className="app__page-link app__page-link--button" onClick={handleLogout}>
-          Log Out
-        </button>
       </div>
     </section>
   );

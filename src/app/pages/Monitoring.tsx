@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { WaterLevelCard } from "../components/WaterLevelCard";
 import { monitoredWaters } from "../data/monitoredWaters";
+import "./Monitoring.css";
 
 export function Monitoring() {
   const [selectedId, setSelectedId] = useState(monitoredWaters[0]?.id ?? "");

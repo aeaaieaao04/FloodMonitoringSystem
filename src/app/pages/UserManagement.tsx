@@ -1,17 +1,7 @@
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
+import "./UserManagement.css";
 
-interface UserManagementProps {
-  onLogout: () => void;
-}
-
-export function UserManagement({ onLogout }: UserManagementProps) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    onLogout();
-    navigate("/login");
-  };
-
+export function UserManagement() {
   return (
     <section className="app__section">
       <h2 className="app__section-title">User Management</h2>
@@ -22,9 +12,6 @@ export function UserManagement({ onLogout }: UserManagementProps) {
         <Link to="/admin" className="app__page-link">
           Back to Admin
         </Link>
-        <button className="app__page-link app__page-link--button" onClick={handleLogout}>
-          Log Out
-        </button>
       </div>
     </section>
   );
