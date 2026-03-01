@@ -189,6 +189,36 @@ body {
   background-color: #ffffff;
 }
 
+.app__device-status,
+.app__counter,
+.app__preferences,
+.app__notifications {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.app__notifications ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.app__user-info {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app__logout-button {
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 0.375rem;
+  background-color: rgba(255,255,255,0.15);
+  cursor: pointer;
+}
+
 .app__form {
   margin-top: 0.75rem;
   display: grid;
