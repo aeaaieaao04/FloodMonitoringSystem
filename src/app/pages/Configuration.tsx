@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import "./Configuration.css";
 
 export function Configuration() {
   return (

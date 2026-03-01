@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import "./Notifications.css";
 
 type NotificationType = "Tsunami" | "Flood" | "Rainfall";
 
@@ -102,10 +103,10 @@ export function Notifications() {
         </label>
 
         <div className="app__page-actions">
-          <button className="app__page-link app__page-link--button" onClick={markAllAsRead}>
+          <button type="button" className="app__page-link app__page-link--button" onClick={markAllAsRead}>
             Mark all as read
           </button>
-          <button className="app__page-link app__page-link--button" onClick={clearAll}>
+          <button type="button" className="app__page-link app__page-link--button" onClick={clearAll}>
             Clear all
           </button>
         </div>
@@ -131,6 +132,7 @@ export function Notifications() {
               <p className="app__page-text">{item.message}</p>
               <p className="app__notif-type">{item.type}</p>
               <button
+                type="button"
                 className="app__page-link app__page-link--button"
                 onClick={() => toggleRead(item.id)}
               >

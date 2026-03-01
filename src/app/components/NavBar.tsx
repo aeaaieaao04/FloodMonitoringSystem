@@ -1,14 +1,27 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import "./NavBar.css";
 
-export function NavBar() {
+interface NavBarProps {
+  onLogout: () => void;
+}
+
+export function NavBar({ onLogout }: NavBarProps) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    onLogout();
+    setMenuOpen(false);
+    navigate("/admin/login", { replace: true, state: { from: "/" } });
+  };
 
   return (
     <nav className="app__navbar">
       <div className="app__navbar-menu">
         <button
+          type="button"
           className="app__navbar-toggle"
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Toggle menu"
@@ -63,6 +76,9 @@ export function NavBar() {
             >
               Summary
             </Link>
+            <button type="button" className="app__navbar-logout" onClick={handleLogout}>
+              Log Out
+            </button>
           </div>
         )}
       </div>

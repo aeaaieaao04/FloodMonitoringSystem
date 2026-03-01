@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { monitoredWaters } from "../data/monitoredWaters";
+import "./IncidentReport.css";
 
 type Urgency = "Low" | "Medium" | "High";
 
